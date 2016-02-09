@@ -1,0 +1,27 @@
+{
+  "name": "simpleproject",
+  "version": "1.0.0",
+  "description": "MHR First project",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mortenrummelhoff/morten_test.git"
+  },
+  "keywords": [
+    "first",
+    "project"
+  ],
+  "author": "Morten Rummelhoff",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mortenrummelhoff/morten_test/issues"
+  },
+  "homepage": "https://github.com/mortenrummelhoff/morten_test#readme",
+  "devDependencies": {
+    "angular": "^1.5.0",
+    "bootstrap": "^3.3.6"
+  }
+}
