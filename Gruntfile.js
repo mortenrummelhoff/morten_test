@@ -1,44 +1,84 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
-  // Project configuration.
-  grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
+    // Project configuration.
+    grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
 
-    jshint: {
-      files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
-      options: {
-        globals: {
-          jQuery: true
+        watch: {
+            files: ['Gruntfile.js', 'app/*.js', '*.html'],
+            tasks: ['jshint']
+        },
+        bower: {
+            install: {
+                options: {
+                    install: true,
+                    copy: false,
+                    targetDir: './libs',
+                    cleanTargetDir: true
+                }
+            }
+        },
+        jshint: {
+            all: ['Gruntfile.js', 'app/*.js', 'app/**/*.js']
+        },
+        karma: {
+            options: {
+                configFile: 'config/karma.conf.js'
+            },
+            unit: {
+                singleRun: true
+            },
+
+            continuous: {
+                singleRun: false,
+                autoWatch: true
+            }
+        },
+        html2js: {
+            dist: {
+                src: ['app/templates/*.html'],
+                dest: 'tmp/templates.js'
+            }
+        },
+        concat: {
+            options: {
+                separator: ';'
+            },
+            dist: {
+                src: ['app/*.js', 'tmp/*.js'],
+                dest: 'dist/app.js'
+            }
+        },
+        connect: {
+            server: {
+                options: {
+                    hostname: 'localhost',
+                    port: 8080,
+                    open: true,
+                    appName: 'chrome'
+                }
+            },
+            open: {
+                target: 'http://localhost:8080',
+                appName: ''
+
+            }
         }
-      }
-    },
-    watch: {
-      files: ['<%= jshint.files %>'],
-      tasks: ['jshint']
-    },
-    uglify: {
-      options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
-      },
-      build: {
-        src: 'src/<%= pkg.name %>.js',
-        dest: 'build/<%= pkg.name %>.min.js'
-      }
-    }
-  });
+    });
 
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-contrib-compress');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-html2js');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-bower-task');
-  grunt.loadNpmTasks('grunt-karma');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-contrib-compress');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-html2js');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-bower-task');
+    grunt.loadNpmTasks('grunt-karma');
 
-  // Default task(s).
-  grunt.registerTask('default', ['uglify', 'watch']);
+    // Default task(s).
+    grunt.registerTask('default', []);
+    grunt.registerTask('dev', ['bower', 'connect:server', 'watch']);
 
 };
