@@ -6,7 +6,7 @@ module.exports = function (grunt) {
 
         watch: {
             files: ['Gruntfile.js', 'app/*.js', '*.html'],
-            tasks: ['jshint']
+            tasks: ['jshint', 'html2js:dist', 'concat']
         },
         bower: {
             install: {
@@ -36,7 +36,7 @@ module.exports = function (grunt) {
         },
         html2js: {
             dist: {
-                src: ['app/templates/*.html'],
+                src: ['app/components/**/*.html'],
                 dest: 'tmp/templates.js'
             }
         },
@@ -45,7 +45,7 @@ module.exports = function (grunt) {
                 separator: ';'
             },
             dist: {
-                src: ['app/*.js', 'tmp/*.js'],
+                src: ['app/components/**/*.js', 'app/*.js', 'tmp/*.js'],
                 dest: 'dist/app.js'
             }
         },
