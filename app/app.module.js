@@ -1,3 +1,10 @@
-/**
- * Created by mortenrummelhoff on 11/02/16.
- */
+var mortenApp = angular.module('mortenApp', [
+
+    //services
+    'ui.router',
+
+    //controllers
+    'partialHomeController'
+
+
+]);

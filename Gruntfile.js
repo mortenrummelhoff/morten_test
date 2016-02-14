@@ -5,8 +5,8 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
         watch: {
-            files: ['Gruntfile.js', 'app/*.js', '*.html'],
-            tasks: ['jshint', 'html2js:dist', 'concat']
+            files: ['Gruntfile.js', 'app/*.js', 'app/components/**/*.js', '*.html', 'app/components/**/*.html'],
+            tasks: ['clean', 'jshint', 'html2js:dist', 'concat']
         },
         bower: {
             install: {
@@ -36,16 +36,14 @@ module.exports = function (grunt) {
         },
         html2js: {
             dist: {
-                src: ['app/components/**/*.html'],
+                src: ['app/componentss/**/*.html'],
                 dest: 'tmp/templates.js'
             }
         },
+        clean: ["dist"],
         concat: {
-            options: {
-                separator: ';'
-            },
             dist: {
-                src: ['app/components/**/*.js', 'app/*.js', 'tmp/*.js'],
+                src: ['app/*.js', 'app/components/**/*.js', 'tmp/*.js'],
                 dest: 'dist/app.js'
             }
         },
@@ -79,6 +77,6 @@ module.exports = function (grunt) {
 
     // Default task(s).
     grunt.registerTask('default', []);
-    grunt.registerTask('dev', ['bower', 'connect:server', 'watch']);
+    grunt.registerTask('dev', ['bower', 'clean', 'concat', 'connect:server', 'watch']);
 
 };
