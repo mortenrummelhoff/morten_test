@@ -5,7 +5,7 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
         watch: {
-            files: ['Gruntfile.js', 'app/*.js', 'app/components/**/*.js', '*.html', 'app/components/**/*.html'],
+            files: ['Gruntfile.js', 'app/*.js', 'app/shared/**/*.js', 'app/components/**/*.js', '*.html', 'app/components/**/*.html'],
             tasks: ['clean', 'jshint', 'html2js:dist', 'concat']
         },
         bower: {
@@ -43,7 +43,7 @@ module.exports = function (grunt) {
         clean: ["dist"],
         concat: {
             dist: {
-                src: ['app/*.js', 'app/components/**/*.js', 'tmp/*.js'],
+                src: ['app/*.js', 'app/shared/**/*.js', 'app/components/**/*.js'],
                 dest: 'dist/app.js'
             }
         },
