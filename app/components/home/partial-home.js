@@ -7,12 +7,32 @@ partialHomeController.controller('PartialHomeController', ['$scope', 'DateExtrac
 
     $scope.mhrname = "Hello PartialHome - This is the Controller speaking";
 
+    var date = new Date();
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
 
-    console.log("Calling DateExtractor: " + DateExtractor.getDayExtract(function(response) {
-            console.log("Response12: " + response);
+    if (month < 10) month = "0" + month;
+    if (day < 10) day = "0" + day;
 
-            $scope.mhrname = response;
-        }));
+    var today = year + "-" + month + "-" + day;
 
+    $scope.d1 = today;
+    $scope.d2 = today;
+
+    $scope.totalDays = 0;
+    $scope.calc = function() {
+        console.log("Calculate called, Date1: " + $scope.d1 +  ", Date2: " + $scope.d2);
+
+        var date1Array = $scope.d1.split("-");
+        var date2Array = $scope.d2.split("-");
+
+        $scope.totalDays = DateExtractor.getDayExtract(date1Array[0], date1Array[1], date1Array[2], date2Array[0], date2Array[1], date2Array[2], function(response) {
+            console.log("returning total Day Calculation: " + response);
+            $scope.totalDays = response;
+            console.log("TotalDays scope variable: " + $scope.totalDays);
+        });
+
+    };
 
 }]);
