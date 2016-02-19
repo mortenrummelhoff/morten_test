@@ -17,9 +17,10 @@ mortenApp.config(function($stateProvider, $urlRouterProvider) {
         })
 
         // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
-        .state('about', {
-            url: '/about',
-            template: '<h2>Here is the about page</h2>'
+        .state('pioneer', {
+            url: '/pioneer',
+            templateUrl: 'app/components/pioneer/pioneer.html',
+            controller: 'PioneerController'
             // we'll get to this in a bit
         })
         .state('contact', {

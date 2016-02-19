@@ -11,31 +11,16 @@ dateExtractorService.factory("DateExtractor", function($http) {
     var factory = {};
 
     factory.getDayExtract = function (y1, m1, d1, y2, m2, d2, callback) {
-        console.log("getDayExtract ..... called: " + y1);
-
-        if (!y1) {
-            console.log("y1 not set");
-        }
-
-        if (!m1) {
-            console.log("m1 not set");
-        }
-
-        if (!y1 || !m1 || !d1 || !y2 || !m2 || !d2) {
-            console.log("y1 or m1 not set");
-        }
 
         if (!y1 || !m1 || !d1 || !y2 || !m2 || !d2) {
             console.log("missing values");
-            callback('Missing Variables. Please set all');
+            callback('Missing values. Please set all dates parameters');
         }
-
         else {
             var url = raspberryHost + dateExtractorEndpoint + "/" + y1 + "/" + m1 + "/" + d1 + "/" + y2 + "/" + m2 + "/" + d2;
 
             $http.get(url).then(function (response) {
                 console.log("Days: " + response.data);
-
                 callback(response.data);
             });
         }

@@ -27,10 +27,8 @@ partialHomeController.controller('PartialHomeController', ['$scope', 'DateExtrac
         var date1Array = $scope.d1.split("-");
         var date2Array = $scope.d2.split("-");
 
-        $scope.totalDays = DateExtractor.getDayExtract(date1Array[0], date1Array[1], date1Array[2], date2Array[0], date2Array[1], date2Array[2], function(response) {
-            console.log("returning total Day Calculation: " + response);
+        DateExtractor.getDayExtract(date1Array[0], date1Array[1], date1Array[2], date2Array[0], date2Array[1], date2Array[2], function(response) {
             $scope.totalDays = response;
-            console.log("TotalDays scope variable: " + $scope.totalDays);
         });
 
     };

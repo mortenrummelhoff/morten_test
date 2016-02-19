@@ -6,7 +6,8 @@ var mortenApp = angular.module('mortenApp', [
     'dateExtractorService',
 
     //controllers
-    'partialHomeController'
+    'partialHomeController',
+    'pioneerController'
 
 
 ]);
