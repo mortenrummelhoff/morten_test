@@ -51,13 +51,13 @@ module.exports = function (grunt) {
             server: {
                 options: {
                     hostname: 'localhost',
-                    port: 8080,
+                    port: 8081,
                     open: true,
                     appName: 'chrome'
                 }
             },
             open: {
-                target: 'http://localhost:8080',
+                target: 'http://localhost:8081',
                 appName: ''
 
             }

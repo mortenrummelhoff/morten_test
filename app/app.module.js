@@ -4,6 +4,8 @@ var mortenApp = angular.module('mortenApp', [
     'ui.router',
 //    'http',
     'dateExtractorService',
+    'pioneerService',
+    'frapontillo.bootstrap-switch',
 
     //controllers
     'partialHomeController',
