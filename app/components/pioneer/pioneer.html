@@ -31,12 +31,20 @@
                     <!--switch-inverse="{{ !inverse }}">-->
 
         </div>
+        <div class="col-sm-2">Volume:</div>
         <div class="col-sm-6">
-                <p>Volume: {{volumen}}
+            <div>
+                <rzslider
+                        rz-slider-model="slider.value"
+                        rz-slider-options="slider.options">
+                </rzslider>
+            </div>
 
-                </p>
+
         </div>
     </div>
+
+
 
     <div class="row">
         <div class="panel panel-default">

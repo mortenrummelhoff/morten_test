@@ -9,6 +9,7 @@ var mortenApp = angular.module('mortenApp', [
     'dateExtractorService',
     'pioneerService',
     'frapontillo.bootstrap-switch',
+    'rzModule',
 
     //controllers
     'partialHomeController',

@@ -8,7 +8,8 @@
     "jquery": "~1.11.0",
     "bootstrap": "~3.0.3",
     "angular-route": "1.2.15",
-    "angular-ui-router": "~0.2.8"
+    "angular-ui-router": "~0.2.8",
+    "angularjs-slider": "*"
   },
   "devDependencies": {
     "angular-mocks": "1.2.15",

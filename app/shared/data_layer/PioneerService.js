@@ -16,7 +16,6 @@ pioneerService.factory("PioneerService", function($http, $rootScope) {
     factory.getPowerStatus = function(callback) {
         var url = host + endpoint + "power";
         $http.get(url).then(function (response) {
-            console.log("PowerStatus: " + response.data);
             callback(response.data);
         });
     };
@@ -35,6 +34,14 @@ pioneerService.factory("PioneerService", function($http, $rootScope) {
         var url = host + endpoint + "mode";
         $http.get(url).then(function (response) {
             console.log("Mode: " + response.data);
+            callback(response.data);
+        });
+    };
+
+    factory.getVolume = function(callback) {
+        var url = host + endpoint + "volume";
+        $http.get(url).then(function (response) {
+            console.log("Volume: " + response.data);
             callback(response.data);
         });
     };
