@@ -1,5 +1,8 @@
 var mortenApp = angular.module('mortenApp', [
 
+    //config
+    'mortenAppConfig',
+
     //services
     'ui.router',
 //    'http',

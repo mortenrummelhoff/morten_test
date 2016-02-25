@@ -3,34 +3,52 @@
 <h1>Pioneer Controls</h1>
 
     <div class="row">
-        <div class="panel-body">
-            <p>Power Status:
-                <input bs-switch ng-model="powerStatus" type="checkbox">
-            </p>
+
+        <div class="col-sm-4">
+                <p>Power Status:
+                    <input bs-switch ng-model="powerStatus" type="checkbox">
+                </p>
+
+            <!--<input-->
+                    <!--bs-switch-->
+                    <!--ng-model="isSelected"-->
+                    <!--type="checkbox"-->
+                    <!--switch-active="{{ isActive }}"-->
+                    <!--switch-on-text="{{ onText }}"-->
+                    <!--switch-off-text="{{ offText }}"-->
+                    <!--switch-on-color="{{ onColor }}"-->
+                    <!--switch-off-color="{{ offColor }}"-->
+                    <!--switch-animate="{{ animate }}"-->
+                    <!--switch-size="{{ size }}"-->
+                    <!--switch-label="{{ label }}"-->
+                    <!--switch-icon="{{ icon }}"-->
+                    <!--switch-radio-off="{{ radioOff }}"-->
+                    <!--switch-label-width="{{ labelWidth }}"-->
+                    <!--switch-handle-width="{{ handleWidth }}"-->
+                    <!--switch-wrapper="{{ wrapper }}"-->
+                    <!--ng-true-value="'yep'"-->
+                    <!--ng-false-value="'nope'"-->
+                    <!--switch-inverse="{{ !inverse }}">-->
+
         </div>
+        <div class="col-sm-6">
+                <p>Volume: {{volumen}}
 
-        <!--<input-->
-                <!--bs-switch-->
-                <!--ng-model="isSelected"-->
-                <!--type="checkbox"-->
-                <!--switch-active="{{ isActive }}"-->
-                <!--switch-on-text="{{ onText }}"-->
-                <!--switch-off-text="{{ offText }}"-->
-                <!--switch-on-color="{{ onColor }}"-->
-                <!--switch-off-color="{{ offColor }}"-->
-                <!--switch-animate="{{ animate }}"-->
-                <!--switch-size="{{ size }}"-->
-                <!--switch-label="{{ label }}"-->
-                <!--switch-icon="{{ icon }}"-->
-                <!--switch-radio-off="{{ radioOff }}"-->
-                <!--switch-label-width="{{ labelWidth }}"-->
-                <!--switch-handle-width="{{ handleWidth }}"-->
-                <!--switch-wrapper="{{ wrapper }}"-->
-                <!--ng-true-value="'yep'"-->
-                <!--ng-false-value="'nope'"-->
-                <!--switch-inverse="{{ !inverse }}">-->
+                </p>
+        </div>
+    </div>
 
-
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">Mode:</div>
+            <div class="panel-body">
+                <div class="btn-group">
+                    <button type="button" class="btn-primary {{powerStatus ? 'enabled' : 'disabled'}}" ng-class="{'btn-success': mode==='TV_SAT'}" ng-click="setMode('TV_SAT')">TV/SAT</button>
+                    <button type="button" class="btn-primary {{powerStatus ? 'enabled' : 'disabled'}}" ng-class="{'btn-success': mode==='TUNER'}" ng-click="setMode('TUNER')">TUNER</button>
+                    <button type="button" class="btn-primary {{powerStatus ? 'enabled' : 'disabled'}}" ng-class="{'btn-success': mode==='APPLE_TV'}" ng-click="setMode('APPLE_TV')">APPLE TV</button>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>

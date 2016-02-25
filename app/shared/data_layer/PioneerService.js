@@ -3,9 +3,12 @@
  */
 var pioneerService = angular.module("pioneerService", []);
 
-pioneerService.factory("PioneerService", function($http) {
+pioneerService.factory("PioneerService", function($http, $rootScope) {
 
-    var host = "http://localhost:8080";
+    var host = $rootScope.host;
+
+    console.log("Host is: " + host);
+
     var endpoint = "/api/pioneer/";
 
     var factory = {};
@@ -13,7 +16,7 @@ pioneerService.factory("PioneerService", function($http) {
     factory.getPowerStatus = function(callback) {
         var url = host + endpoint + "power";
         $http.get(url).then(function (response) {
-            console.log("Power Status: " + response.data);
+            console.log("PowerStatus: " + response.data);
             callback(response.data);
         });
     };
@@ -21,6 +24,19 @@ pioneerService.factory("PioneerService", function($http) {
     factory.setPowerStatus = function(powerOn, callback) {
         var url = host + endpoint + "power?on=" + powerOn ;
         $http.put(url).then(callback);
+    };
+
+    factory.setMode = function(mode, callback) {
+        var url = host + endpoint + "mode?mode=" + mode;
+        $http.put(url).then(callback);
+    };
+
+    factory.getMode = function(callback) {
+        var url = host + endpoint + "mode";
+        $http.get(url).then(function (response) {
+            console.log("Mode: " + response.data);
+            callback(response.data);
+        });
     };
 
     return factory;
