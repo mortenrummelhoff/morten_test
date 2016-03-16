@@ -13,6 +13,8 @@ pioneerService.factory("PioneerService", function($http, $rootScope) {
 
     var factory = {};
 
+    console.log("This is the PioneerService");
+
     factory.getPowerStatus = function(callback) {
         var url = host + endpoint + "power";
         $http.get(url).then(function (response) {
@@ -44,6 +46,11 @@ pioneerService.factory("PioneerService", function($http, $rootScope) {
             console.log("Volume: " + response.data);
             callback(response.data);
         });
+    };
+
+    factory.setVolume = function(vol) {
+        var url = host + endpoint + "volume?vol=" + vol;
+        $http.put(url);
     };
 
     return factory;

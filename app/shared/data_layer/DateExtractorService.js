@@ -3,9 +3,9 @@
  */
 var dateExtractorService = angular.module("dateExtractorService", []);
 
-dateExtractorService.factory("DateExtractor", function($http) {
+dateExtractorService.factory("DateExtractor", function($http, $rootScope) {
 
-    var raspberryHost = "http://192.168.0.50:8080";
+    var raspberryHost = $rootScope.raspberryHost;
     var dateExtractorEndpoint = "/dates/extractions";
 
     var factory = {};

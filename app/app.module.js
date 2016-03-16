@@ -4,16 +4,19 @@ var mortenApp = angular.module('mortenApp', [
     'mortenAppConfig',
 
     //services
-    'ui.router',
-//    'http',
     'dateExtractorService',
     'pioneerService',
+    'ihcWebSocketService',
+
+    //modules
+    'ui.router',
     'frapontillo.bootstrap-switch',
     'rzModule',
 
     //controllers
     'partialHomeController',
-    'pioneerController'
-
+    'pioneerController',
+    'ihcController'
 
 ]);
+

@@ -23,6 +23,12 @@ mortenApp.config(function($stateProvider, $urlRouterProvider) {
             controller: 'PioneerController'
             // we'll get to this in a bit
         })
+        .state('ihc', {
+            url: '/ihc',
+            templateUrl: 'app/components/ihc/ihc.html',
+            controller: 'IhcController'
+            // we'll get to this in a bit
+        })
         .state('contact', {
             url: '/contact',
             template: '<div class="container text-center"><h4>Here is the contact page</h4></div>'

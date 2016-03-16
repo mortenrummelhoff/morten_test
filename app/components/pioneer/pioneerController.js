@@ -14,7 +14,7 @@ pioneerController.controller('PioneerController', ['$scope', '$timeout', 'Pionee
             value: 0,
             options: {
                 floor: 0,
-                ceil: 130,
+                ceil: 160,
                 showSelectionBar: false,
                 hideLimitLabels: true,
                 showSelectionBarFromValue: null,
@@ -39,6 +39,12 @@ pioneerController.controller('PioneerController', ['$scope', '$timeout', 'Pionee
             getModeStatus();
             getVolumeStatus();
         }
+
+        $scope.$on("slideEnded", function() {
+            // user finished sliding a handle
+            console.log("User Changed Sliding: " + $scope.slider.value);
+            PioneerService.setVolume($scope.slider.value);
+        });
 
         PioneerService.getPowerStatus(function(response) {
             console.log("PowerStatus : " + response);
