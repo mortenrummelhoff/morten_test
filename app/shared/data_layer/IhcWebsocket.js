@@ -13,15 +13,17 @@ ihcWebSocketService.service('IhcWebSocketService', ['$q', '$rootScope', '$timeou
     }, messageIds = [];
 
     service.RECONNECT_TIMEOUT = 30000;
-    service.SOCKET_URL = "http://localhost:8080/hello";
+    service.SOCKET_URL = "http://localhost:8080/chat";
     service.CHAT_TOPIC = "/topic/message";
-    service.CHAT_BROKER = "/app";
+    service.CHAT_BROKER = "/app/chat";
 
     service.receive = function() {
         return listener.promise;
     };
 
     service.send = function(message) {
+        console.log("send called. Send: " + message);
+
         var id = Math.floor(Math.random() * 1000000);
         socket.stomp.send(service.CHAT_BROKER, {
             priority: 9
@@ -39,9 +41,13 @@ ihcWebSocketService.service('IhcWebSocketService', ['$q', '$rootScope', '$timeou
     };
 
     var getMessage = function(data) {
+
+        //console.log("getMessage called: " + JSON.stringify(data));
+
         var message = JSON.parse(data), out = {};
         out.message = message.message;
         out.time = new Date(message.time);
+
         if (_.contains(messageIds, message.id)) {
             out.self = true;
             messageIds = _.remove(messageIds, message.id);
