@@ -5,7 +5,11 @@ var ihcController = angular.module('ihcController', []);
 
 ihcController.controller('IhcController', ['$scope', 'IhcWebSocketService', function ($scope, IhcWebSocketService) {
 
+    var initializing = true;
+
     $scope.receivedMessage = "";
+    $scope.kitchenLight = false;
+
 
 
     $scope.sendTest = function() {

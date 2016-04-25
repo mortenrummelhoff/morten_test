@@ -3,7 +3,7 @@
  */
 mortenApp.config(function($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('  login');
 
     console.log("Print out console now");
 
@@ -33,6 +33,11 @@ mortenApp.config(function($stateProvider, $urlRouterProvider) {
             url: '/contact',
             template: '<div class="container text-center"><h4>Here is the contact page</h4></div>'
             // we'll get to this in a bit
+        })
+        .state('login', {
+            url: '/login',
+            controller: 'LoginController',
+            templateUrl: 'app/components/security/login.html'
         })
 
 

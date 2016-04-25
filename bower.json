@@ -10,6 +10,7 @@
     "angular-route": "1.2.15",
     "angular-ui-router": "~0.2.8",
     "angularjs-slider": "*",
+    "angular-cookies": "1.5.3",
     "sockjs": "~0.3.4",
     "stomp-websocket": "2.3.4",
     "lodash": "2.4.1"
