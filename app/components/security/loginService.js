@@ -24,7 +24,7 @@ loginService.factory('AuthenticationService',
                  ----------------------------------------------*/
 
                 var authD = Base64.encode(username + ':' + password);
-                var host = $rootScope.host;
+                var host = $rootScope.raspberryHost;
                 var url = host +  "/api/pioneer/auth";
                 console.log("Basic " + authD);
 

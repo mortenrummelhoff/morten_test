@@ -10,6 +10,32 @@
             </p>
         </div>
 
+        <div class="col-sm-2">Volume:</div>
+        <div class="col-sm-6">
+            <div>
+                <rzslider
+                        rz-slider-model="slider.value"
+                        rz-slider-options="slider.options">
+                </rzslider>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-12 align-left">
+            <p>LightEvent Data</p>
+            <table class= "table table-striped">
+                <th>Date</th>
+                <th>Name</th>
+                <th>Value</th>
+                <tr ng-repeat="x in kitchenLightData" class="text-left">
+                    <td>{{ x.date | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                    <td>{{ x.name }}</td>
+                    <td>{{ x.value }}</td>
+                </tr>
+            </table>
+        </div>
+
     </div>
 
 </div>

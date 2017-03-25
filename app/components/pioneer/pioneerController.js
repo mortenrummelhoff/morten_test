@@ -80,6 +80,6 @@ pioneerController.controller('PioneerController', ['$scope', '$timeout', 'Pionee
                     }
                 });
             }
-    });
+        });
 
 }]);

@@ -7,6 +7,7 @@ var mortenApp = angular.module('mortenApp', [
     'dateExtractorService',
     'pioneerService',
     'ihcWebSocketService',
+    'ihcService',
 
     //modules
     'ui.router',

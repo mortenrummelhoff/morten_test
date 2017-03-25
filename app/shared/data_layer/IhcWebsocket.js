@@ -12,10 +12,15 @@ ihcWebSocketService.service('IhcWebSocketService', ['$q', '$rootScope', '$timeou
         stomp: null
     }, messageIds = [];
 
+    var isConnected = false;
+
     service.RECONNECT_TIMEOUT = 30000;
+    //service.SOCKET_URL = "http://192.168.0.50:8080/chat";
     service.SOCKET_URL = "http://localhost:8080/chat";
     service.CHAT_TOPIC = "/topic/message";
     service.CHAT_BROKER = "/app/chat";
+
+    var connectedListenerCallback;
 
     service.receive = function() {
         return listener.promise;
@@ -32,6 +37,14 @@ ihcWebSocketService.service('IhcWebSocketService', ['$q', '$rootScope', '$timeou
             id: id
         }));
         messageIds.push(id);
+    };
+
+    service.isConnected = function() {
+        return isConnected;
+    };
+
+    service.waitForConnect = function(callback) {
+        connectedListenerCallback = callback;
     };
 
     var reconnect = function() {
@@ -56,9 +69,14 @@ ihcWebSocketService.service('IhcWebSocketService', ['$q', '$rootScope', '$timeou
     };
 
     var startListener = function() {
+        console.log("Websocket connected and ready to use...");
+        isConnected = true;
+
         socket.stomp.subscribe(service.CHAT_TOPIC, function(data) {
             listener.notify(getMessage(data.body));
         });
+
+        connectedListenerCallback(true);
     };
 
     var initialize = function() {
@@ -66,6 +84,7 @@ ihcWebSocketService.service('IhcWebSocketService', ['$q', '$rootScope', '$timeou
         socket.stomp = Stomp.over(socket.client);
         socket.stomp.connect({}, startListener);
         socket.stomp.onclose = reconnect;
+
     };
 
     initialize();
