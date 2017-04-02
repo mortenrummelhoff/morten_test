@@ -26,6 +26,8 @@ var mortenApp = angular.module('mortenApp', [
 ]);
 
 
+
+
 mortenApp.run(['$rootScope', '$location', '$cookieStore', '$http', '$state',
     function ($rootScope, $location, $cookieStore, $http, $state) {
         // keep user logged in after page refresh
@@ -34,8 +36,10 @@ mortenApp.run(['$rootScope', '$location', '$cookieStore', '$http', '$state',
             $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
         }
 
+
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams, options) {
             console.log("stateChangeStart event triggered" + event);
+            console.log("JSESSIONID in cookie: " +  $cookieStore.get('JSESSIONID'));
 
             //event.preventDefault();
 
@@ -64,4 +68,8 @@ mortenApp.run(['$rootScope', '$location', '$cookieStore', '$http', '$state',
                 console.log("what happened here??");
             }
         });
-    }]);
+    }
+
+
+
+    ]);

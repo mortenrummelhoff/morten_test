@@ -23,18 +23,20 @@ loginService.factory('AuthenticationService',
                 /* Use this for real authentication
                  ----------------------------------------------*/
 
-                var authD = Base64.encode(username + ':' + password);
-                var host = $rootScope.raspberryHost;
-                var url = host +  "/api/pioneer/auth";
-                console.log("Basic " + authD);
-
-
+                var data = 'username=' + username + '&password=' + password;
+                //var authD = Base64.encode(username + ':' + password);
+                var host = $rootScope.host;
+                var url = host +  "/login";
+                console.log("Login url: " + url);
+                //console.log("Basic " + authD);
 
                 $http({method: 'POST',
                     url: url,
-                    headers: {'Authorization' : 'Basic ' + authD} }).
+                    data: data,
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                     }).
                     then(function successCallback(response) {
-                        console.log("successCallback called");
+                        console.log("successCallback called: " + response);
                         var response2 = {success: username};
                         callback(response2);
 
@@ -51,28 +53,48 @@ loginService.factory('AuthenticationService',
 
             service.SetCredentials = function (username, password) {
                 var authdata = Base64.encode(username + ':' + password);
-
+                $rootScope.loggedId = true;
                 $rootScope.globals = {
                     currentUser: {
                         username: username,
-                        authdata: authdata
+                        //authdata: authdata
                     }
                 };
 
 
-                $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
+                //$http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
                 $cookieStore.put('globals', $rootScope.globals);
             };
 
             service.ClearCredentials = function () {
                 console.log("ClearCredentials called");
+                $rootScope.loggedId = false;
                 $rootScope.globals = {};
                 $cookieStore.remove('globals');
-                $http.defaults.headers.common.Authorization = 'Basic ';
             };
 
             return service;
         }])
+
+
+.factory('sessionInterceptor', function($injector, $rootScope, $cookieStore, $q ) {
+
+    var sessionInterceptor = {
+        responseError: function(response) {
+
+            console.log("Response error: "+ response.status);
+
+            if (response.status == 401){
+                var AuthenticationService = $injector.get('AuthenticationService');
+                AuthenticationService.ClearCredentials();
+                return $q.reject(response);
+            }
+        }
+    };
+
+    return sessionInterceptor;
+
+})
 
     .factory('Base64', function () {
         /* jshint ignore:start */
@@ -159,3 +181,7 @@ loginService.factory('AuthenticationService',
 
         /* jshint ignore:end */
     });
+
+    loginService.config(['$httpProvider', function($httpProvider) {
+                    $httpProvider.interceptors.push('sessionInterceptor');
+                }]);

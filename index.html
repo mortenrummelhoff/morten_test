@@ -41,8 +41,10 @@
                 <li><a ui-sref="pioneer">Pioneer</a></li>
                 <li><a ui-sref="ihc">IHC</a></li>
                 <li><a ui-sref="contact">Contact</a></li>
-
             </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li ng-show="loggedId"><a ui-sref="logout">Logout</a></li>
+    </ul>
 </nav>
 
 <!-- MAIN CONTENT -->

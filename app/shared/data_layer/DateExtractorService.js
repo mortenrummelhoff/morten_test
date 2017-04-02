@@ -5,7 +5,7 @@ var dateExtractorService = angular.module("dateExtractorService", []);
 
 dateExtractorService.factory("DateExtractor", function($http, $rootScope) {
 
-    var raspberryHost = $rootScope.raspberryHost;
+    var host = $rootScope.host;
     var dateExtractorEndpoint = "/dates/extractions";
 
     var factory = {};
@@ -17,7 +17,7 @@ dateExtractorService.factory("DateExtractor", function($http, $rootScope) {
             callback('Missing values. Please set all dates parameters');
         }
         else {
-            var url = raspberryHost + dateExtractorEndpoint + "/" + y1 + "/" + m1 + "/" + d1 + "/" + y2 + "/" + m2 + "/" + d2;
+            var url = host + dateExtractorEndpoint + "/" + y1 + "/" + m1 + "/" + d1 + "/" + y2 + "/" + m2 + "/" + d2;
 
             $http.get(url).then(function (response) {
                 console.log("Days: " + response.data);

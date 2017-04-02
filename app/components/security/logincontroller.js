@@ -13,15 +13,17 @@ loginController.controller('LoginController', ['$scope', '$rootScope', '$locatio
             $scope.dataLoading = true;
             AuthenticationService.Login($scope.username, $scope.password, function(response) {
 
-                console.log("response: " + response.constructor);
+                console.log("response: " + response);
 
-                if(response.success) {
+                if(response !== null && response.success) {
                     console.log("logged in successfully");
                     AuthenticationService.SetCredentials($scope.username, $scope.password);
                     $location.path('/home');
                 } else {
                     console.log("login not successfull");
-                    $scope.error = response.message;
+                    if (response !== null) {
+                        $scope.error = response.message;
+                    }
                     $scope.dataLoading = false;
                 }
             });

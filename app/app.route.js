@@ -39,7 +39,14 @@ mortenApp.config(function($stateProvider, $urlRouterProvider) {
             controller: 'LoginController',
             templateUrl: 'app/components/security/login.html'
         })
+        .state('logout', {
+            url: '/login',
+            controller: function(AuthenticationService, $route) {
+                AuthenticationService.ClearCredentials();
+                $route.reload();
 
+            }
+        })
 
 
     ;
