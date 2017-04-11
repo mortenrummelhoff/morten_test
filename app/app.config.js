@@ -5,6 +5,8 @@ var mortenAppConfig = angular.module('mortenAppConfig', []);
 mortenAppConfig.run(function($rootScope, $http) {
 
     $http.defaults.withCredentials = true;
+    $http.defaults.useXDomain = true;
+    delete $http.defaults.headers.common['X-Requested-With'];
 
     //$rootScope.raspberryHost = "http://192.168.0.50:8080";
     //$rootScope.raspberryHost = "http://localhost:8080";

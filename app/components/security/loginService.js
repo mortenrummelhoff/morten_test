@@ -84,7 +84,7 @@ loginService.factory('AuthenticationService',
 
             console.log("Response error: "+ response.status);
 
-            if (response.status == 401){
+            if (response.status !== 200){
                 var AuthenticationService = $injector.get('AuthenticationService');
                 AuthenticationService.ClearCredentials();
                 return $q.reject(response);

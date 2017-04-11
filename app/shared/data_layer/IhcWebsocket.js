@@ -81,13 +81,16 @@ ihcWebSocketService.service('IhcWebSocketService', ['$q', '$rootScope', '$timeou
     };
 
     var initialize = function() {
+        console.log("Socket url client: " + service.SOCKET_URL);
         socket.client = new SockJS(service.SOCKET_URL);
         socket.stomp = Stomp.over(socket.client);
         socket.stomp.connect({}, startListener);
         socket.stomp.onclose = reconnect;
+        console.log("Socket initialized...");
 
     };
 
+    console.log("Initializing Websocket");
     initialize();
     return service;
 }]);
